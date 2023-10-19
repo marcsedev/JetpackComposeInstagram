@@ -1,4 +1,4 @@
-package com.marcsedev.jetpackcomposeinstagram.ui.login
+package com.marcsedev.jetpackcomposeinstagram.login.ui
 
 import android.util.Patterns
 import androidx.lifecycle.LiveData

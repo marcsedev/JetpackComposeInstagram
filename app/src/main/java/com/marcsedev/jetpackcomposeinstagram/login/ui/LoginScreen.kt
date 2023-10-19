@@ -1,7 +1,6 @@
-package com.marcsedev.jetpackcomposeinstagram.ui.login
+package com.marcsedev.jetpackcomposeinstagram.login.ui
 
 import android.app.Activity
-import android.util.Patterns
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -34,7 +33,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.BottomCenter
@@ -93,11 +91,11 @@ fun Body(modifier: Modifier, loginViewModel: LoginViewModel) {
         ImageLogo(modifier = Modifier.align(CenterHorizontally))
         Spacer(modifier = Modifier.size(16.dp))
         Email(email) {
-           loginViewModel.onLoginChanged(email, password)
+           loginViewModel.onLoginChanged(it, password)
         }
         Spacer(modifier = Modifier.size(4.dp))
         Password(password) {
-            loginViewModel.onLoginChanged(email, password)
+            loginViewModel.onLoginChanged(email, it)
         }
         Spacer(modifier = Modifier.size(8.dp))
         ForgotPassword(Modifier.align(Alignment.End))
