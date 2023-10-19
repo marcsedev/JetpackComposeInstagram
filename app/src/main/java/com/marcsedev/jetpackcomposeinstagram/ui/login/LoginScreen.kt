@@ -1,4 +1,4 @@
-package com.marcsedev.jetpackcomposeinstagram
+package com.marcsedev.jetpackcomposeinstagram.ui.login
 
 import android.app.Activity
 import android.util.Patterns
@@ -51,6 +51,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.marcsedev.jetpackcomposeinstagram.R
 
 @Composable
 fun LoginScreen(/*navController: NavController*/) {
@@ -91,7 +92,7 @@ fun Body(modifier: Modifier) {
         Spacer(modifier = Modifier.size(16.dp))
         Email(email) {
             email = it
-            isLoginEnable =enabledLogin(email, password)
+            isLoginEnable = enabledLogin(email, password)
         }
         Spacer(modifier = Modifier.size(4.dp))
         Password(password) {
