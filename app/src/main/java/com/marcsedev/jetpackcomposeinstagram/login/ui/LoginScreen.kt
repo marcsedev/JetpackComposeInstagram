@@ -1,6 +1,7 @@
 package com.marcsedev.jetpackcomposeinstagram.login.ui
 
 import android.app.Activity
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -21,6 +22,7 @@ import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -41,6 +43,7 @@ import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Alignment.Companion.TopEnd
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -60,9 +63,23 @@ fun LoginScreen(loginViewModel: LoginViewModel/*navController: NavController*/) 
             .padding(16.dp)
             .background(Color.Transparent),  // Set background color to white
     ) {
-        Header(Modifier.align(TopEnd))
-        Body(Modifier.align(Center), loginViewModel)
-        Footer(Modifier.align(BottomCenter))
+        val isLoading: Boolean by loginViewModel.isLoading.observeAsState(false)
+        if (isLoading) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+            ) {
+                CircularProgressIndicator(
+                    Modifier
+                        .align(Alignment.Center)
+                        .animateContentSize()
+                )
+            }
+        } else {
+            Header(Modifier.align(TopEnd))
+            Body(Modifier.align(Center), loginViewModel)
+            Footer(Modifier.align(BottomCenter))
+        }
     }
 }
 
@@ -91,7 +108,7 @@ fun Body(modifier: Modifier, loginViewModel: LoginViewModel) {
         ImageLogo(modifier = Modifier.align(CenterHorizontally))
         Spacer(modifier = Modifier.size(16.dp))
         Email(email) {
-           loginViewModel.onLoginChanged(it, password)
+            loginViewModel.onLoginChanged(it, password)
         }
         Spacer(modifier = Modifier.size(4.dp))
         Password(password) {
@@ -100,7 +117,7 @@ fun Body(modifier: Modifier, loginViewModel: LoginViewModel) {
         Spacer(modifier = Modifier.size(8.dp))
         ForgotPassword(Modifier.align(Alignment.End))
         Spacer(modifier = Modifier.size(16.dp))
-        LoginButton(isLoginEnable)
+        LoginButton(isLoginEnable, loginViewModel)
         Spacer(modifier = Modifier.size(16.dp))
         LoginDivider()
         Spacer(modifier = Modifier.size(32.dp))
@@ -193,9 +210,9 @@ fun LoginDivider() {
 }
 
 @Composable
-fun LoginButton(loginEnable: Boolean) {
+fun LoginButton(loginEnable: Boolean, loginViewModel: LoginViewModel) {
     Button(
-        onClick = { },
+        onClick = { loginViewModel.onLoginSelected() },
         enabled = loginEnable,
         modifier = Modifier.fillMaxWidth(),
         colors = ButtonDefaults.buttonColors(
