@@ -15,13 +15,13 @@ JetpackComposeInstagram es una aplicación diseñada para replicar las funcional
 
 ## Próximas Funcionalidades
 
-### 1. Inyección de Dependencias con Dagger Hilt
-   - Implementación de Dagger Hilt para gestionar la inyección de dependencias.
-   - Mejora de la modularidad y mantenimiento del código.
-
-### 2. Arquitectura MVVM
+### 1. Arquitectura MVVM
    - Adopción de la arquitectura Model-View-ViewModel (MVVM) para separar la lógica de presentación y de negocio.
    - Implementación de LiveData y ViewModel para la gestión del ciclo de vida.
+     
+### 2. Inyección de Dependencias con Dagger Hilt
+   - Implementación de Dagger Hilt para gestionar la inyección de dependencias.
+   - Mejora de la modularidad y mantenimiento del código.
 
 ### 3. Clean Architecture
    - Refactorización del código siguiendo los principios de Clean Architecture.
