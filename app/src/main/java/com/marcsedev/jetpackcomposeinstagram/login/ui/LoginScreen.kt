@@ -43,14 +43,12 @@ import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Alignment.Companion.TopEnd
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.marcsedev.jetpackcomposeinstagram.R
@@ -71,7 +69,7 @@ fun LoginScreen(loginViewModel: LoginViewModel/*navController: NavController*/) 
             ) {
                 CircularProgressIndicator(
                     Modifier
-                        .align(Alignment.Center)
+                        .align(Center)
                         .animateContentSize()
                 )
             }
@@ -305,9 +303,9 @@ fun ImageLogo(modifier: Modifier) {
     )
 }
 
-
+/*
 @Preview(showBackground = true)
 @Composable
 fun LoginScreenPreview() {
     LoginScreen(loginViewModel = LoginViewModel())
-}
+}*/

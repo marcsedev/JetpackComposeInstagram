@@ -7,11 +7,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.marcsedev.jetpackcomposeinstagram.login.domain.LoginUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class LoginViewModel : ViewModel() {
-
-    val loginUseCase = LoginUseCase()
+@HiltViewModel
+class LoginViewModel @Inject constructor(
+    private val loginUseCase: LoginUseCase
+) : ViewModel() {
 
     private val _email = MutableLiveData<String>()
     val email: LiveData<String> = _email
@@ -31,17 +34,17 @@ class LoginViewModel : ViewModel() {
         _isLoginEnable.value = enableLogin(email, password)
     }
 
-    fun enableLogin(email: String, password: String) =
+    private fun enableLogin(email: String, password: String) =
         Patterns.EMAIL_ADDRESS.matcher(email).matches() && password.length > 6
 
     fun onLoginSelected() {
         viewModelScope.launch {
             _isLoading.value = true
             val result = loginUseCase(email.value!!, password.value!!)
-            if (result) {
+            //if (result) {
                 //Navigate to next screen
-                Log.i("Login", "ok")
-            }
+                Log.e("Login", "$result")
+            //
             _isLoading.value = false
         }
     }
